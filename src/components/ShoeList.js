@@ -7,7 +7,6 @@ const ShoeList = (props) => (
  <ul>{props.shoes.map(shoe => 
    
   (<Shoe key={shoe.id} name={shoe.name} brand={shoe.brand} price={shoe.price} />)
-
    )
   
    }

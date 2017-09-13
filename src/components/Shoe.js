@@ -2,9 +2,20 @@ import React from 'react';
 
 const Shoe = (props) => (
   <div>
-   {props.name} 
-   {props.brand}
-   {props.price.toFixed(2)}
+   <div className="col s12 m9">
+   <div className="card horizontal">
+     <div className="card-stacked">
+       <div className="card-content">
+         <h4> {props.name} > {props.brand}</h4> 
+    
+     <h6> R{props.price.toFixed(2)}</h6>
+       </div>
+       <div className="card-action">
+         <a href="#" onClick={(i) => props.onShoeSelect(props)}>ADD TO CART</a>
+       </div>
+     </div>
+   </div>
+ </div>
   </div>
 );
 

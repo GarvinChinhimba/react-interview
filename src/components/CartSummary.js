@@ -3,7 +3,7 @@ import React from 'react';
 const CartSummary = (props) => {
   return (
     <div className="CartSummary">
-      CartSummary
+      {props.cart}
     </div>
   )
 };
