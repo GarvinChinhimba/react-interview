@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NavBar from './components/NavBar';
+import ShoeList from './components/ShoeList';
 import Api from './api';
 
 class App extends Component {
@@ -11,6 +12,8 @@ class App extends Component {
    * */
   constructor(props) {
     super(props);
+
+    this.state = {shoes:[]};
   }
 
   /**
@@ -19,6 +22,9 @@ class App extends Component {
    *  - this.setState() might be useful
    * */
   componentDidMount() {
+
+
+    Api.getShoes().then(shoes => (this.setState({shoes:shoes})));
 
   }
 
@@ -30,20 +36,21 @@ class App extends Component {
     return (
       <div>
 
-        <NavBar title="Hello World"/>
+<NavBar title="My App Store"/>
 
         <div className="row">
 
           <div className="col s3">
-            I am the left pane
+          Choices
           </div>
 
           <div className="col s6">
-            I am in the middle
+           My Shoes
+          <ShoeList shoes={this.state.shoes} />
           </div>
 
           <div className="col s3">
-            Right?
+           Cart
           </div>
 
         </div>
