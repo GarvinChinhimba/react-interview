@@ -6,7 +6,7 @@ const Facet = (props) => (
     <ul className="collection">
     {countByKey(props.items,'brand').map((item,index) => {
    return   (<li className="collection-item" key={index} onClick={(i) => 
-     props.onFacetSelect(item)}>{item.brand + "(" + item.count + ")"}</li> )
+     props.onFacetSelect(item)}>{item.brand + ">[" + item.count + "]"}</li> )
     })}
     </ul>
   </div>
