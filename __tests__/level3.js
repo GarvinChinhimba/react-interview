@@ -5,6 +5,7 @@ import App from '../src/App';
 import {countByKey} from '../src/utils';
 import Shoe from '../src/components/Shoe';
 
+
 const mockShoes = [
   { id: 'a', brand: 'Nike', name: 'Air Max 90', price: 2999.99 },
   { id: 'b', brand: 'Nike', name: 'Cortez', price: 2129.99 },
@@ -71,41 +72,50 @@ describe('Facet', () => {
 describe('App', () => {
   it('should contain a <Facet /> component', () => {
     const wrapper = shallow(<App/>);
-    expect(wrapper.find(<Facet items={mockShoes}/>).length).toEqual(1);
+    expect(wrapper.find(Facet).length).toEqual(1);
   });
 
   it('should have `state.facetSelected` that equals null', () => {
-    // WRITE THIS TEST!
-    return false;
-  });
+    const wrapper = shallow(<App/>);
+    expect(wrapper.state().facetSelected).toBeNull();
+     });
 
   it('should have an instance method called `handleFacetSelect`', () => {
-    // WRITE THIS TEST!
-    return false;
+    const wrapper = shallow(<App/>);
+    expect(wrapper.instance().handleFacetSelect).toBeInstanceOf(Function);
   });
 
   it('the instance method should update `state.facetSelected`', () => {
-    // WRITE THIS TEST!
-    return false;
+    const wrapper = shallow(<App/>);
+    expect(wrapper.instance().handleFacetSelect());
+    expect(wrapper.state.facetSelected).not.toBeNull();
   });
 
   it('the instance method should update `state.facetSelected` to null if a shoe is selected already (toggle off)', () => {
-    // WRITE THIS TEST!
-    return false;
+    const wrapper = shallow(<App />);
+    const mockFacet = countByKey(mockShoes, 'brand');
+    wrapper.instance().handleFacetSelect(mockFacet[3]);
+    expect(wrapper.state().facetSelected).toEqual(mockFacet[3]);
+    wrapper.instance().handleFacetSelect(mockFacet[3]);
+    expect(wrapper.state().facetSelected).toEqual(null);
+    
+
+
   });
 
   it('the <Facet /> component should be passed `handleSelect` as a prop', () => {
-    // WRITE THIS TEST!
-    return false;
+    const wrapper = shallow(<App/>);
+    const facetProps = wrapper.find(Facet).props();
+    expect(Object.keys(facetProps)).toContain('onFacetSelect');
+    expect(facetProps.onFacetSelect).toBeInstanceOf(Function);
   });
 
-  it('the list of shoes display should be filter based on the facet selected', () => {
-    // WRITE THIS TEST! THIS IS THE MAIN ONE
-    return false;
-  });
 
   it('the list of shoes display should be filter based on the facet selected', () => {
-    // WRITE THIS TEST! THIS IS THE MAIN ONE
-    return false;
+    const wrapper = shallow(<App/>);
+    wrapper.state().shoes = mockShoes;
+    const mockFacet = countByKey(mockShoes, 'brand');
+    wrapper.instance().handleFacetSelect(mockFacet[1]);
+    expect(wrapper.state().shoes.length).not.toEqual(0);
   });
 });

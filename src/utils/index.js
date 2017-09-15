@@ -16,6 +16,33 @@
  * @param arr An array of objects
  * @param key A string of the object property
  */
-export function countByKey (arr, key) {
+export function countByKey (arr, key) { 
+ var result = [];
+ var occurrence = {};
+ arr.map(function(item,i) {
+     var parameter = item[key];
+     if(parameter){
 
-}
+         if(!occurrence[parameter])
+         {
+
+            occurrence[parameter]=0;
+
+         }
+         
+         occurrence[parameter]++;
+     }
+ });
+ Object.keys(occurrence).map(function(parameter){
+
+     var count = {};
+     count[key]=parameter;
+     count["count"]=occurrence[parameter];
+     result.push(count);
+
+ });  
+
+ return result;
+    }
+    
+

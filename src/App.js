@@ -3,6 +3,7 @@ import NavBar from './components/NavBar';
 import ShoeList from './components/ShoeList';
 import CartSummary from './components/CartSummary';
 import Api from './api';
+import Facet from './components/Facet';
 
 class App extends Component {
 
@@ -16,12 +17,13 @@ class App extends Component {
 
     this.state = {
     shoes:[],
-    cart:[]
+    cart:[],
+    facetSelected:null
     
     };
 
     this.handleShoeSelect = this.handleShoeSelect.bind(this);
-    
+    this.handleFacetSelect = this.handleFacetSelect.bind(this);
   }
 
   /**
@@ -43,6 +45,34 @@ class App extends Component {
 
   }
 
+  handleFacetSelect (facet){
+
+    const currentFacet = this.state.facetSelected;
+
+    var current = JSON.stringify(currentFacet);
+    var previous = JSON.stringify(facet);
+
+    if (current === previous) {
+
+      this.setState({facetSelected: null});
+      Api.getShoes().then(shoes => {
+      this.setState({shoes:shoes})
+
+      });
+    }
+    else {
+
+      this.setState({facetSelected: facet})
+      var filteredItems = this.state.shoes.filter(selected => {
+        return selected.brand === facet.brand
+        
+      });
+
+      this.setState({shoes:filteredItems});
+    }
+
+  }
+
   render() {
     return (
       <div>
@@ -52,7 +82,9 @@ class App extends Component {
         <div className="row">
 
           <div className="col s3">
-         
+          <h4>Shoe Filter</h4>
+          <Facet items={this.state.shoes} onFacetSelect={this.handleFacetSelect} />
+          
           </div>
 
           <div className="col s6">

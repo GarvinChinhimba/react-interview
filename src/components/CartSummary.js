@@ -6,14 +6,14 @@ const CartSummary = (props) => {
        <div className="panel panel-default">
          <div className="panel-body">
            Total:&nbsp;
-           <span className="ItemCount" id="ItemCount">
+           <span className="ItemCount chip  " id="ItemCount">
            {props.cart.length}
            </span>
            <br/>
            <br/>
-           Total Amount:R&nbsp;
-           <span className="TotalCost" id="TotalCost">
-            {computeTotalPrice(props.cart).toFixed(2)}
+           Total Amount:&nbsp;
+           <span className="TotalCost chip" id="TotalCost">
+            R{computeTotalPrice(props.cart).toFixed(2)}
            </span>
            
 
