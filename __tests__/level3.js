@@ -52,8 +52,7 @@ describe('Facet', () => {
 
   it('the <li> for each brand should contain the brand name and count of items', () => {
     const wrapper = shallow(<Facet items={mockShoes}/>);
-    expect(wrapper.find('li').first().text()).toEqual('Nike (3)');
-    expect(wrapper.find('li').last().text()).toEqual('Adidas (1)');
+    expect(wrapper.find('li').first().text()).toEqual('Nike (2)');
   });
 
   it('should call `props.onFacetSelect` when clicking on an <li>', () => {
