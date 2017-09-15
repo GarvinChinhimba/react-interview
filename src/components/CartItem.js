@@ -11,9 +11,10 @@ const CartItem = (props) => (
 );
 CartItem.propTypes = {
     brand: React.PropTypes.string.isRequired,
+    price: React.PropTypes.number.isRequired,
     onCartShoeRemove: React.PropTypes.func,
     name: React.PropTypes.string.isRequired,
-    price: React.PropTypes.number.isRequired,
+  
   };
   
   export default CartItem;
